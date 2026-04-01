@@ -94,7 +94,7 @@ Welcome, {user?.name}
 {/* Banner */}
 <div className="mb-6 sm:mb-8">
 <img
-src="../Image/banner.png"
+src="https://res.cloudinary.com/dbhp5iwcw/image/upload/v1775024779/banner_xo3mvl.png"
 className="w-full h-40 sm:h-56 md:h-72 lg:h-96 object-cover rounded-lg shadow"
 />
 </div>
