@@ -115,7 +115,7 @@ export default function AllItems() {
             <div key={item._id} className="bg-white rounded-lg shadow p-3 flex items-center gap-3">
               {item.image ? (
                 <img
-                  src={`${BASE_URL}/uploads/${item.image}`}
+                  src={item.image}
                   alt={item.name}
                   className="h-16 w-16 object-cover rounded flex-shrink-0"
                 />
@@ -175,7 +175,7 @@ export default function AllItems() {
                 <td className="p-3">
                   {item.image ? (
                     <img
-                      src={`${BASE_URL}/uploads/${item.image}`}
+                      src={item.image}
                       alt={item.name}
                       className="h-20 w-20 object-cover mx-auto rounded"
                     />
