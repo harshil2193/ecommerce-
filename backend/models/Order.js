@@ -25,7 +25,7 @@ const orderSchema = new mongoose.Schema({
 
   paymentMethod: {
     type: String,
-    enum: ["COD", "ONLINE"],
+    enum: ["COD", "ONLINE", "Online"],
     default: "COD"
   },
 
