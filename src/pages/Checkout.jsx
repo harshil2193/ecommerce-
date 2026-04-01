@@ -342,7 +342,7 @@ export default function Checkout() {
               Processing...
             </>
           ) : (
-            payment === "Online" ? `💳 Pay ₹${finalTotal}` : "✅ Place Order"
+            payment === "Online" ? `💳 Pay ₹${finalTotal}` : "Place Order"
           )}
         </button>
 
