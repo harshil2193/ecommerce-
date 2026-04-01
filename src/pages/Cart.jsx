@@ -138,7 +138,7 @@ export default function Cart() {
               <img
                 src={
                   item.image
-                    ? `${BASE_URL}/uploads/${item.image}`
+                    ? item.image
                     : "https://via.placeholder.com/80"
                 }
                 alt={item.name}
