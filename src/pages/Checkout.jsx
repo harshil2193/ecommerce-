@@ -48,7 +48,7 @@ export default function Checkout() {
   }, []);
 
   const total = cart.reduce((t, i) => t + i.price * i.qty, 0);
-  const delivery = total > 10 ? 0 : 50;
+  const delivery = total > 500 ? 0 : 50;
   const discount = 0;
   const finalTotal = total + delivery - discount;
 
