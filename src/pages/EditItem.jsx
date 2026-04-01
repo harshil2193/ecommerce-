@@ -125,7 +125,7 @@ export default function EditItem() {
             >
               {preview || product.image ? (
                 <img
-                  src={preview || `${BASE_URL}/uploads/${product.image}`}
+                  src={preview || product.image}
                   alt="preview"
                   className="h-32 mx-auto rounded-lg object-cover"
                 />
