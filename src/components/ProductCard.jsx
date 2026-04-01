@@ -114,7 +114,7 @@ return(
 <div className="bg-white p-3 sm:p-4 rounded-lg shadow hover:shadow-lg transition flex flex-col">
 
 <img
-src={`${BASE_URL}/uploads/${product.image}`}
+src={product.image}
 className="h-32 sm:h-40 w-full object-contain mx-auto"
 />
 
