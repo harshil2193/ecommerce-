@@ -45,7 +45,7 @@ export default function EditItem() {
         headers: { "Content-Type": "multipart/form-data" }
       });
 
-      showToast("✅ Product Updated Successfully!");
+      showToast("Product Updated Successfully!");
       await new Promise(r => setTimeout(r, 2000));
       navigate("/admin/items");
 
