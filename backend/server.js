@@ -18,7 +18,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);  // ✅ All order routes handled here (includes stock logic)
 app.use("/api/payment", paymentRoutes); // ✅ Razorpay payment routes
 
-mongoose.connect("process.env.MONGO_URI")
+mongoose.connect(process.env.MONGO_URI)
 .then(()=>console.log("MongoDB Connected"))
 .catch(err=>console.log(err));
 
