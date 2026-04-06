@@ -2,26 +2,35 @@ const express = require("express");
 const router = express.Router();
 const Order = require("../models/Order");
 const Product = require("../models/Product");
-const { Resend } = require("resend");
-const resend = new Resend(process.env.RESEND_API_KEY);
+const nodemailer = require("nodemailer");
 
 // ✅ Generate 6-digit OTP
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
+// ✅ Gmail transporter
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASS
+  }
+});
+
+// ✅ Send Email helper
 const sendEmail = async (toEmail, subject, htmlBody) => {
   try {
-    const { data, error } = await resend.emails.send({
-      from: "E-Commerce Store <onboarding@resend.dev>",
+    const info = await transporter.sendMail({
+      from: `"E-Commerce Store" <${process.env.GMAIL_USER}>`,
       to: toEmail,
       subject: subject,
       html: htmlBody
     });
-    if (error) console.log("❌ Email error:", error);
-    else console.log("✅ Email sent:", data.id);
+    console.log("✅ Email sent:", info.messageId);
   } catch (err) {
     console.log("❌ Email error:", err.message);
   }
 };
+
 
 // ✅ Create Order → reduce stock immediately
 router.post("/create", async (req, res) => {
