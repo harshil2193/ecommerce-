@@ -136,32 +136,22 @@ app.get("/api/dashboard", async (req, res) => {
 // =======================
 app.post("/api/forgot-password", async (req, res) => {
   const User = require("./models/User");
-  const nodemailer = require("nodemailer");
+  const { Resend } = require("resend");
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) return res.status(404).json({ message: "No account found with this email" });
 
-    // Generate 6-digit OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    const expiry = Date.now() + 10 * 60 * 1000; // 10 minutes
+    const expiry = Date.now() + 10 * 60 * 1000;
 
-    // Save OTP to user
     user.resetOtp = otp;
     user.resetOtpExpiry = expiry;
     await user.save();
 
-    // Send email
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS,
-      },
-    });
-
-    await transporter.sendMail({
-      from: `"E-Commerce" <${process.env.GMAIL_USER}>`,
+    await resend.emails.send({
+      from: "E-Commerce Store <onboarding@resend.dev>",
       to: user.email,
       subject: "Password Reset OTP",
       html: `
